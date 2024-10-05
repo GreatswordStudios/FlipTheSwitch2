@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class UserConsentScript : MonoBehaviour
     private int totalPlayers = 4;  // Total number of players
     private int currentPlayer = 0; // Index for current player being asked
     private bool[] consentResults; // Array to store consent (true = Yes, false = No)
+
+    public int numclicks = 0;
 
     private bool isInvisible = false;
 
@@ -63,6 +66,7 @@ public class UserConsentScript : MonoBehaviour
         {
             // All players have been asked, aggregate the results
             AggregateConsentResults();
+
         }
     }
 
@@ -82,10 +86,12 @@ public class UserConsentScript : MonoBehaviour
 
         if (yesCount>noCount)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Flip The Switch Main");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FlipTheSwitchMain");
+            //transition to main scene
         }
         else{
-//          currentHealth--;
+            Debug.Log("Players lose");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Player Sign In");
         }
 
         // Example: Display aggregated result in the console
