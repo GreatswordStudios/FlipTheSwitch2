@@ -10,9 +10,11 @@ public class UserConsentScript : MonoBehaviour
     public Button yesButton;  // Yes button
     public Button noButton;   // No button
 
-    private int totalPlayers = 5;  // Total number of players
+    private int totalPlayers = 4;  // Total number of players
     private int currentPlayer = 0; // Index for current player being asked
     private bool[] consentResults; // Array to store consent (true = Yes, false = No)
+
+    private bool isInvisible = false;
 
 
     void Start()
@@ -24,11 +26,15 @@ public class UserConsentScript : MonoBehaviour
         //AskConsentFromPlayer(currentPlayer);
 
         // Attach listeners to buttons
-        yesButton.onClick.AddListener(() => OnConsentGiven(true));
-        noButton.onClick.AddListener(() => OnConsentGiven(false));
+        if(!isInvisible)
+        {
+            yesButton.onClick.AddListener(() => OnConsentGiven(true));
+            noButton.onClick.AddListener(() => OnConsentGiven(false));
+        }
+
     }
 
-    void update()
+    void Update()
     {
         
     }
@@ -72,6 +78,14 @@ public class UserConsentScript : MonoBehaviour
                 yesCount++;
             else
                 noCount++;
+        }
+
+        if (yesCount>noCount)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Flip The Switch Main");
+        }
+        else{
+//          currentHealth--;
         }
 
         // Example: Display aggregated result in the console
