@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using JetBrains.Annotations;
 
 public class PartyList : MonoBehaviour
 {
@@ -33,7 +34,18 @@ public class PartyList : MonoBehaviour
 
     public void OnButtonClick()
     {
-        Debug.Log("Button pressed");
+         Debug.Log("Button Pressed");
+         inputField.enabled = false;
+    }
+
+    public void ChangeSceneKeepData()
+    {
+        if (currentTextIndex == 4 || inputField.enabled == false)
+        {
+            SceneManager.LoadScene("UserConsent");
+            
+
+        }
     }
 
 
