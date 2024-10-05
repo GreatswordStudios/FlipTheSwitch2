@@ -30,7 +30,7 @@ public class KillSwitch : MonoBehaviour
     {
         if (PlayerEnum == PTK)
         {
-            myObject.GetComponent<PlayerStatsAndMovement>PlayerStatsAndMovement.
+
         }
     }
 }
