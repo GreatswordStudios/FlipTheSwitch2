@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KillSwitch : MonoBehaviour
 {
+    string[] playerList = { };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,13 @@ public class KillSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    void selectPlayerToRemove()
+    {
+        if (playerList.Length > 0)
+        {
+
+        }
     }
 }
