@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 m_Position = Vector2.zero;
     float speed = 5f;
-    bool isActive = true;
-    string name = "";
-    int maxHealth = 4;
-    int currentHealth = 4;
+    static bool isActive = true;
+    static string name = "";
+    static int maxHealth = 4;
+    static int currentHealth = 4;
 
     // Start is called before the first frame update
     void Start()

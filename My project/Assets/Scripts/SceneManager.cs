@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     int NumPlayers = 1;
     int PlayersRemaining = 0;
     int TurnCount = 1;
@@ -15,6 +16,16 @@ public class SceneManager : MonoBehaviour
     int RemainingTurns = 1;
     float TimePerTurn = 20f;
     float RemainingTime = 20f;
+    bool pauseTimer = false;
+=======
+    static int NumPlayers = 1;
+    static int PlayersRemaining = 0;
+    static int TurnCount = 1;
+    static int TotalTurnCount = 5;
+    static int RemainingTurns = 1;
+    static float TimePerTurn = 20f;
+    static float RemainingTime = 20f;
+>>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -26,18 +37,13 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RemainingTime > 0 )
+       if (pauseTimer)
         {
-            RemainingTime = TimePerTurn - Time.deltaTime;
-        }
-        else
-        {
-            RemainingTime = 0;
-            CheckTurnCount();
+            CountTimerDown();
         }
     }
 
-    void CheckTurnCount() 
+    static void CheckTurnCount() 
     {
         if (RemainingTurns > 0 && PlayersRemaining > 1) {
 
@@ -49,6 +55,40 @@ public class SceneManager : MonoBehaviour
         }
     }
 
-    void StartNextTurn() { }
+<<<<<<< Updated upstream
+    private void ResetTurnTimer()
+    {
+        RemainingTime = TimePerTurn;
+    }
+
+    private void CountTimerDown()
+    {
+        if (RemainingTime > 0)
+        {
+            RemainingTime = TimePerTurn - Time.deltaTime;
+        }
+        else
+        {
+            pauseTheTimer();
+            RemainingTime = 0;
+            CheckTurnCount();
+        }
+    }
+
+    void pauseTheTimer()
+    {
+        pauseTimer = true;
+    }
+
+    void resumeTheTimer()
+    {
+        pauseTimer = false;
+    }
+
+void StartNextTurn() { }
     void BeginFailPhase() { }
+=======
+    static void StartNextTurn() { }
+    static void BeginFailPhase() { }
+>>>>>>> Stashed changes
 }
