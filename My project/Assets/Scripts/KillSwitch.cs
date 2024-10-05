@@ -28,6 +28,10 @@ public class KillSwitch : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+    }
+
     void FlipSwitch(int PlayerEnum, int PTK)
     {
         if (PlayerEnum == PTK)
