@@ -1,18 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PartyList : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TMP_InputField inputField;
+    public TextMeshProUGUI[] displayTexts;
+    private int currentTextIndex = 0;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            SubmitInput(); 
+            Debug.Log("Hit enter");
+        }
     }
+
+    public void SubmitInput()
+    {
+        if (currentTextIndex < displayTexts.Length)
+        {
+            string userInput = inputField.text;
+            displayTexts[currentTextIndex].text = userInput;
+            currentTextIndex++;
+            inputField.text = "";
+            if (currentTextIndex == displayTexts.Length)
+            {
+                Debug.Log("done"); 
+            }
+        }
+    }
+
+    public void OnButtonClick()
+    {
+        Debug.Log("Button pressed");
+    }
+
+
 }
