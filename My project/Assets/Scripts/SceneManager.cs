@@ -15,6 +15,7 @@ public class SceneManager : MonoBehaviour
     int RemainingTurns = 1;
     float TimePerTurn = 20f;
     float RemainingTime = 20f;
+    bool pauseTimer = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +27,9 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RemainingTime > 0 )
+       if (pauseTimer)
         {
-            RemainingTime = TimePerTurn - Time.deltaTime;
-        }
-        else
-        {
-            RemainingTime = 0;
-            CheckTurnCount();
+            CountTimerDown();
         }
     }
 
@@ -49,6 +45,35 @@ public class SceneManager : MonoBehaviour
         }
     }
 
-    void StartNextTurn() { }
+    private void ResetTurnTimer()
+    {
+        RemainingTime = TimePerTurn;
+    }
+
+    private void CountTimerDown()
+    {
+        if (RemainingTime > 0)
+        {
+            RemainingTime = TimePerTurn - Time.deltaTime;
+        }
+        else
+        {
+            pauseTheTimer();
+            RemainingTime = 0;
+            CheckTurnCount();
+        }
+    }
+
+    void pauseTheTimer()
+    {
+        pauseTimer = true;
+    }
+
+    void resumeTheTimer()
+    {
+        pauseTimer = false;
+    }
+
+void StartNextTurn() { }
     void BeginFailPhase() { }
 }
