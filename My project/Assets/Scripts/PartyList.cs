@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 public class PartyList : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class PartyList : MonoBehaviour
     {
         if (currentTextIndex == 4 || inputField.enabled == false)
         {
-            SceneManager.LoadScene("UserConsent");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Selection");
             
 
         }
