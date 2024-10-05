@@ -6,6 +6,7 @@ public class KillSwitch : MonoBehaviour
 {
     string[] playerList = { };
     int playerToKill = 0;
+    public GameObject[] playerRefs;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class KillSwitch : MonoBehaviour
     {
         if (playerList.Length > 0)
         {
+            playerRefs = GameObject.FindGameObjectsWithTag("Player");
             playerToKill = Random.Range(0, playerList.Length - 1);
         }
     }

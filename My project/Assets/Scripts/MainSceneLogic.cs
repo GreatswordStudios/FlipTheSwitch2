@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SceneManager : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class SceneManager : MonoBehaviour
     static int RemainingTurns = 1;
     static float TimePerTurn = 20f;
     static float RemainingTime = 20f;
+    public GameObject[] playerRefs;
+
 
     static bool pauseTimer = true;
     // Start is called before the first frame update
     void Start()
     {
+        playerRefs = GameObject.FindGameObjectsWithTag("Player");
+        NumPlayers = playerRefs.Length;
         TurnCount = NumPlayers - 1;
         TimePerTurn *= (1 / Time.deltaTime);
         TotalTurnCount = RemainingTurns;
