@@ -15,6 +15,7 @@ public class PartyList : MonoBehaviour
         {
             SubmitInput(); 
             Debug.Log("Hit enter");
+            ChangeSceneKeepData();
         }
     }
 
@@ -28,7 +29,8 @@ public class PartyList : MonoBehaviour
             inputField.text = "";
             if (currentTextIndex == displayTexts.Length)
             {
-                Debug.Log("done"); 
+                Debug.Log("done");
+                inputField.enabled = false; 
             }
         }
     }
