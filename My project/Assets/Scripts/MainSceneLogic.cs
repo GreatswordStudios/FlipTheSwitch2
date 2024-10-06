@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using TMPro;
 
 public class SceneManager : MonoBehaviour
 {
@@ -19,6 +22,10 @@ public class SceneManager : MonoBehaviour
     GameObject[] playerStarts;
     static int currentPlayer = 0;
     bool timerpaused = false;
+    public TextMeshProUGUI turncounter;
+    public TextMeshProUGUI timercounter;
+    public TextMeshProUGUI[] healthcounter;
+    public TextMeshProUGUI[] namedisplay;
 
 
     static bool pauseTimer = true;
@@ -42,6 +49,7 @@ public class SceneManager : MonoBehaviour
         Debug.Log(RemainingTurns);
         Debug.Log(currentPlayer);
         DisableOrEnablePlayers();
+        UpdateTurnCounter();
     }
 
     // Update is called once per frame
@@ -50,7 +58,7 @@ public class SceneManager : MonoBehaviour
        if (!timerpaused)
         {
             CountTimerDown();
-            Debug.Log(RemainingTime);
+            UpdateTimerCounter();
         }
     }
 
@@ -60,6 +68,7 @@ public class SceneManager : MonoBehaviour
 
             RemainingTurns--;
             currentPlayer++;
+            UpdateTurnCounter();
             ResetPlayerLocations();
             DisableOrEnablePlayers();
             resetTheTimer();
@@ -71,7 +80,7 @@ public class SceneManager : MonoBehaviour
 
     void CountTimerDown()
     {
-        if (RemainingTime > 0)
+        if (RemainingTime > 0 && RemainingTurns > 0)
         {
             RemainingTime -= (2*Time.deltaTime);
         }
@@ -120,6 +129,16 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    void UpdateTurnCounter()
+    {
+        turncounter.SetText(RemainingTurns + "/" + TotalTurnCount);
+    }
+
+    void UpdateTimerCounter()
+    {
+        int secs = Convert.ToInt32(RemainingTime);
+        timercounter.SetText("Time:" + secs );
+    }
     void StartNextTurn() { }
     void BeginFailPhase() { }
 }
