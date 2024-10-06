@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -19,7 +20,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        Debug.Log(box);
     }
 
     // Update is called once per frame
@@ -38,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W))
             {
-
                 Vector2 movement = new Vector2(0, verticalInput);
                 movement.Normalize();
                 transform.Translate(movement * speed * Time.deltaTime);
