@@ -11,10 +11,9 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 m_Position = Vector2.zero;
     float speed = 5f;
-    static bool isActive = true;
-    static string name = "";
-    static int maxHealth = 4;
-    static int currentHealth = 4;
+    int maxHealth = 4;
+    public bool isActivePlayer = false;
+    int currentHealth = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +24,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
+        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        if (!isActivePlayer)
         {
-            float verticalInput = Input.GetAxis("Vertical");
-            float horizontalInput = Input.GetAxis("Horizontal");
 
+        }
+        else
+        {
             if (Input.GetKey(KeyCode.Space))
             {
             }
@@ -62,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.Translate(movement * speed * Time.deltaTime);
             }
         }
-
     }
-        
+            
 }
