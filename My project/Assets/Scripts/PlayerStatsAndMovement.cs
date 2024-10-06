@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -39,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W))
             {
-
                 Vector2 movement = new Vector2(0, verticalInput);
                 movement.Normalize();
                 transform.Translate(movement * speed * Time.deltaTime);
