@@ -9,6 +9,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
+using System.ComponentModel;
 
 public class SceneManager : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class SceneManager : MonoBehaviour
         Debug.Log(currentPlayer);
         DisableOrEnablePlayers();
         UpdateTurnCounter();
+        UpdateHealthCounter();
+        UpdatePlayerName();
     }
 
     // Update is called once per frame
@@ -138,6 +141,36 @@ public class SceneManager : MonoBehaviour
     {
         int secs = Convert.ToInt32(RemainingTime);
         timercounter.SetText("Time:" + secs );
+    }
+
+    void UpdateHealthCounter()
+    {
+        List<int> currentplayerhealth = new List<int>();
+        List<int> totalplayerHealth = new List<int>();
+        for (int i =0; i < playerRefs.Length; ++i)
+        {
+            currentplayerhealth.Add(playerRefs[i].GetComponent<PlayerMovement>().currentHealth);
+            totalplayerHealth.Add(playerRefs[i].GetComponent<PlayerMovement>().maxHealth);
+        }
+        currentplayerhealth.ToArray();
+        for (int i = 0; i < healthcounter.Length; ++i)
+        {
+            healthcounter[i].SetText(currentplayerhealth[i].ToString() + " / " + totalplayerHealth[i].ToString());
+        }
+    }
+
+    void UpdatePlayerName()
+    {
+        List<string> playernames = new List<string>();
+       for (int i = 0; i < playerRefs.Length; ++i)
+        {
+            playernames.Add(playerRefs[i].GetComponent<PlayerMovement>().name);
+        }
+       playernames.ToArray();
+        for (int i = 0; i < namedisplay.Length; ++i)
+        {
+            namedisplay[i].SetText(playernames[i]);
+        }
     }
     void StartNextTurn() { }
     void BeginFailPhase() { }

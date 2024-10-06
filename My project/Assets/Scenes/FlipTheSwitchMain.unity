@@ -2249,7 +2249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46.286804, y: 0.099998474}
+  m_AnchoredPosition: {x: -46.286804, y: 0.099990845}
   m_SizeDelta: {x: 5.4263763, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917839252
@@ -2473,11 +2473,15 @@ MonoBehaviour:
   turncounter: {fileID: 320479516}
   timercounter: {fileID: 840047427}
   healthcounter:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  namedisplay: []
+  - {fileID: 389994645}
+  - {fileID: 641563931}
+  - {fileID: 824425773}
+  - {fileID: 14451706}
+  namedisplay:
+  - {fileID: 910037958}
+  - {fileID: 555327468}
+  - {fileID: 210100464}
+  - {fileID: 384669832}
 --- !u!4 &1193190291
 Transform:
   m_ObjectHideFlags: 0
