@@ -108,6 +108,10 @@ public class UserConsentScript : MonoBehaviour
         {
             // All players have been asked, aggregate the results
             AggregateConsentResults();
+            yesButton.interactable = false;
+            noButton.interactable = false;
+            Debug.Log("running AggregateConsentResults()");
+
 
         }
     }
@@ -125,6 +129,8 @@ public class UserConsentScript : MonoBehaviour
             else
                 noCount++;
         }
+        Debug.Log("yescount "+yesCount);
+        Debug.Log("nocount "+noCount);
 
         if (yesCount>noCount)
         {
