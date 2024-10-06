@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class KillSwitch : MonoBehaviour
 {
-    string[] playerList = { };
     int playerToKill = 0;
     public GameObject[] playerRefs;
     AudioSource audioData = null;
@@ -36,9 +35,9 @@ public class KillSwitch : MonoBehaviour
 
     void selectPlayerToRemove()
     {
-        if (playerList.Length > 0)
+        if (playerRefs.Length > 0)
         {
-            playerToKill = Random.Range(0, playerList.Length - 1);
+            playerToKill = Random.Range(0, playerRefs.Length - 1);
         }
     }
 
@@ -46,13 +45,6 @@ public class KillSwitch : MonoBehaviour
     {
     }
 
-    void FlipSwitch(int PlayerEnum, int PTK)
-    {
-        if (PlayerEnum == PTK)
-        {
-
-        }
-    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Your code here
@@ -60,13 +52,18 @@ public class KillSwitch : MonoBehaviour
         //if (collision.gameObject.name == play)
         audioData.Play();
         GameObject playerToKillRef = playerRefs[playerToKill];
+        Debug.Log(playerToKill + "is the target");
         if(collision.gameObject.name == playerToKillRef.gameObject.name)
         {
-            sceneRef.GetComponent<SceneManager>().KillPlayer();
+            playerRefs[playerToKill].GetComponent<PlayerMovement>().KillPlayer();
+            sceneRef.GetComponent<SceneManager>().ReadPlayerAmount();
+            sceneRef.GetComponent<SceneManager>().ChooseNextPlayer();
+            Debug.Log("Player KILLED");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("House Wins");
         }
         else
         {
-             sceneRef.GetComponent<SceneManager>().ChooseNextPlayer();
+            sceneRef.GetComponent<SceneManager>().ChooseNextPlayer();
         }
         
     }

@@ -38,7 +38,7 @@ public class SceneManager : MonoBehaviour
 
     void InitializePlayerState()
     {
-        playerRefs = GameObject.FindGameObjectsWithTag("Player");
+        ReadPlayerAmount();
         playerStarts = GameObject.FindGameObjectsWithTag("Start");
         currentPlayer = 0;
         ResetPlayerLocations();
@@ -53,6 +53,12 @@ public class SceneManager : MonoBehaviour
         UpdateTurnCounter();
         UpdateHealthCounter();
         UpdatePlayerName();
+    }
+
+    public void ReadPlayerAmount()
+    {
+        playerRefs = GameObject.FindGameObjectsWithTag("Player");
+
     }
 
     // Update is called once per frame
@@ -90,6 +96,8 @@ public class SceneManager : MonoBehaviour
         {
             pauseTheTimer();
             RemainingTime = 0;
+            playerRefs[currentPlayer].GetComponent<PlayerMovement>().currentHealth--;
+            UpdateHealthCounter();
             CheckTurnCount();
         }
     }
@@ -118,7 +126,7 @@ public class SceneManager : MonoBehaviour
         {
             if (playerRefs[i].transform.position != playerStarts[i].transform.position)
             {
-                playerRefs[i].transform.Translate(playerStarts[i].transform.position);
+                playerRefs[i].transform.position = playerStarts[i].transform.position;
             }
         }
     }
