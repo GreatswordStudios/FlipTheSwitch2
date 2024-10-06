@@ -139,7 +139,7 @@ public class UserConsentScript : MonoBehaviour
         }
         else{
             Debug.Log("Players lose");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Selection");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Player Sign In");
         }
 
         // Example: Display aggregated result in the console
