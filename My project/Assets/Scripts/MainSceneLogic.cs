@@ -172,6 +172,4 @@ public class SceneManager : MonoBehaviour
             namedisplay[i].SetText(playernames[i]);
         }
     }
-    void StartNextTurn() { }
-    void BeginFailPhase() { }
 }

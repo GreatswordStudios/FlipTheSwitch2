@@ -25,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 0f;
         rb.mass = 0f;
         rb.freezeRotation = true;
-        BoxCollider2D box = GetComponent<BoxCollider2D>();
-        Debug.Log(box);
     }
 
     // Update is called once per frame
