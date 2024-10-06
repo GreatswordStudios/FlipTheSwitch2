@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
@@ -68,6 +70,23 @@ public class PlayerMovement : MonoBehaviour
                 transform.Translate(movement * speed * Time.deltaTime);
             }
         }
+    }
+    public void TakeDamage(){
+        currentHealth --;
+        if (currentHealth <=0){
+            KillPlayer();
+        }
+    }
+
+    public void KillPlayer(){
+        currentHealth = 0;
+        Destroy(gameObject);
+        Destroy(this.gameObject);
+
+    }
+
+    public void AllDamage(){
+        
     }
             
 }
