@@ -19,6 +19,8 @@ public class UserConsentScript : MonoBehaviour
 
     private bool isInvisible = false;
 
+    public GameObject[] makevisible;
+
 
     void Start()
     {
@@ -34,7 +36,22 @@ public class UserConsentScript : MonoBehaviour
             yesButton.onClick.AddListener(() => OnConsentGiven(true));
             noButton.onClick.AddListener(() => OnConsentGiven(false));
         }
+        for (int i = 0; i < makevisible.Length; i++)
+    {
+        Renderer renderer = makevisible[i].GetComponent<Renderer>();
 
+        if (renderer != null)
+        {
+            Material mat = renderer.material;
+
+            Color color = mat.color;
+            color.a = 1f; // Set alpha to 0 (fully transparent)
+            mat.color = color;
+
+            Debug.Log(makevisible[i].name + " transparency changed to invisible");
+        }
+
+    }
     }
 
     void Update()
@@ -48,6 +65,31 @@ public class UserConsentScript : MonoBehaviour
     //}
 
     // Called when a player gives their consent
+    public void ButtonFinallyClicked()
+{
+    Debug.Log("Button Clicked");
+
+    // Iterate over each player object and change transparency
+    for (int i = 0; i < makevisible.Length; i++)
+    {
+        Renderer renderer = makevisible[i].GetComponent<Renderer>();
+
+        if (renderer != null)
+        {
+            // Ensure the material uses a shader that supports transparency
+            Material mat = renderer.material;
+
+            Color color = mat.color;
+            color.a = 0f; // Set alpha to 1 (fully visible)
+            mat.color = color;
+
+            Debug.Log(makevisible[i].name + " transparency changed to visible");
+        }
+    }
+    UnityEngine.SceneManagement.SceneManager.LoadScene("Selection");
+
+}
+
     void OnConsentGiven(bool consent)
     {
         // Store the player's consent (true for Yes, false for No)
