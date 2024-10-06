@@ -6,25 +6,10 @@ public class KillSwitch : MonoBehaviour
 {
     int playerToKill = 0;
     public GameObject[] playerRefs;
-    AudioSource audioData = null;
-    public GameObject sceneRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject audioObject = GameObject.Find("switch sound");
-        Debug.Log("Kill Switch");
-        if (audioObject != null)
-        {
-            audioData = audioObject.GetComponent<AudioSource>();
-
-            // Check if the AudioSource was found
-            if (audioData != null)
-            {
-                Debug.Log("Audio Found");
-            }
-        }
-
         selectPlayerToRemove();   
     }
 

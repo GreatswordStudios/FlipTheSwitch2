@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-        rb.mass = 0f;
-        rb.freezeRotation = true;
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        Debug.Log(box);
     }
 
     // Update is called once per frame
@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        
         if (!isActivePlayer)
         {
 
