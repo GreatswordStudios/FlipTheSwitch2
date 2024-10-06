@@ -7,10 +7,25 @@ public class KillSwitch : MonoBehaviour
     string[] playerList = { };
     int playerToKill = 0;
     public GameObject[] playerRefs;
+    AudioSource audioData = null;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject audioObject = GameObject.Find("switch sound");
+        Debug.Log("Kill Switch");
+        if (audioObject != null)
+        {
+            audioData = audioObject.GetComponent<AudioSource>();
+
+            // Check if the AudioSource was found
+            if (audioData != null)
+            {
+                Debug.Log("Audio Found");
+            }
+        }
+
         selectPlayerToRemove();   
     }
 
@@ -38,5 +53,13 @@ public class KillSwitch : MonoBehaviour
         {
 
         }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Your code here
+        Debug.Log("Collision Detected with: " );
+        Debug.Log(collision.gameObject.name);
+        audioData.Play();
+        
     }
 }
