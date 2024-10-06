@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void KillPlayer(){
+    public void KillPlayer(){
 
     }
 
