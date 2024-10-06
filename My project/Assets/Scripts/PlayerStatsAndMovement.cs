@@ -21,7 +21,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
+        rb.gravityScale = 0f;
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        Debug.Log(box);
     }
 
     // Update is called once per frame
