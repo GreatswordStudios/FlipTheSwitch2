@@ -70,10 +70,9 @@ public class SceneManager : MonoBehaviour
         if (RemainingTurns > 0 && PlayersRemaining > 1) {
 
             RemainingTurns--;
-            currentPlayer++;
+            ChooseNextPlayer();
+            pauseTheTimer();
             UpdateTurnCounter();
-            ResetPlayerLocations();
-            DisableOrEnablePlayers();
             resetTheTimer();
         }
         else {
@@ -97,6 +96,14 @@ public class SceneManager : MonoBehaviour
     void pauseTheTimer()
     {
         timerpaused = true;
+    }
+
+    public void ChooseNextPlayer()
+    {
+        currentPlayer++;
+        ResetPlayerLocations();
+        DisableOrEnablePlayers();
+        resetTheTimer();
     }
 
     void resetTheTimer()
