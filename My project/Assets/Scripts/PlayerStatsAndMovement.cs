@@ -11,9 +11,9 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 m_Position = Vector2.zero;
     float speed = 5f;
-    int maxHealth = 4;
+    public int maxHealth = 4;
     public bool isActivePlayer = false;
-    int currentHealth = 4;
+    public int currentHealth = 4;
 
     // Start is called before the first frame update
     void Start()
