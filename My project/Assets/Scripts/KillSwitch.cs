@@ -6,11 +6,26 @@ public class KillSwitch : MonoBehaviour
 {
     int playerToKill = 0;
     public GameObject[] playerRefs;
+    AudioSource audioData = null;
+    public GameObject sceneRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        selectPlayerToRemove();   
+        GameObject audioObject = GameObject.Find("switch sound");
+        Debug.Log("Kill Switch");
+        if (audioObject != null)
+        {
+            audioData = audioObject.GetComponent<AudioSource>();
+
+            // Check if the AudioSource was found
+            if (audioData != null)
+            {
+                Debug.Log("Audio Found");
+            }
+        }
+
+        selectPlayerToRemove();
     }
 
     // Update is called once per frame
@@ -38,7 +53,7 @@ public class KillSwitch : MonoBehaviour
         audioData.Play();
         GameObject playerToKillRef = playerRefs[playerToKill];
         Debug.Log(playerToKill + "is the target");
-        if(collision.gameObject.name == playerToKillRef.gameObject.name)
+        if (collision.gameObject.name == playerToKillRef.gameObject.name)
         {
             playerRefs[playerToKill].GetComponent<PlayerMovement>().KillPlayer();
             sceneRef.GetComponent<SceneManager>().ReadPlayerAmount();
@@ -50,6 +65,6 @@ public class KillSwitch : MonoBehaviour
         {
             sceneRef.GetComponent<SceneManager>().ChooseNextPlayer();
         }
-        
+
     }
 }

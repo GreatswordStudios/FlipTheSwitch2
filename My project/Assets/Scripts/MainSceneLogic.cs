@@ -9,6 +9,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
+using System.ComponentModel;
 
 public class SceneManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class SceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       InitializePlayerState();
+        InitializePlayerState();
     }
 
     void InitializePlayerState()
@@ -50,6 +51,8 @@ public class SceneManager : MonoBehaviour
         Debug.Log(currentPlayer);
         DisableOrEnablePlayers();
         UpdateTurnCounter();
+        UpdateHealthCounter();
+        UpdatePlayerName();
     }
 
     public void ReadPlayerAmount()
@@ -61,25 +64,26 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (!timerpaused)
+        if (!timerpaused)
         {
             CountTimerDown();
             UpdateTimerCounter();
         }
     }
 
-    void CheckTurnCount() 
+    void CheckTurnCount()
     {
-        if (RemainingTurns > 0 && PlayersRemaining > 1) {
+        if (RemainingTurns > 0 && PlayersRemaining > 1)
+        {
 
             RemainingTurns--;
-            currentPlayer++;
+            ChooseNextPlayer();
+            pauseTheTimer();
             UpdateTurnCounter();
-            ResetPlayerLocations();
-            DisableOrEnablePlayers();
             resetTheTimer();
         }
-        else {
+        else
+        {
             Debug.Log("House Wins");
         }
     }
@@ -88,7 +92,7 @@ public class SceneManager : MonoBehaviour
     {
         if (RemainingTime > 0 && RemainingTurns > 0)
         {
-            RemainingTime -= (2*Time.deltaTime);
+            RemainingTime -= (2 * Time.deltaTime);
         }
         else
         {
@@ -102,6 +106,14 @@ public class SceneManager : MonoBehaviour
     void pauseTheTimer()
     {
         timerpaused = true;
+    }
+
+    public void ChooseNextPlayer()
+    {
+        currentPlayer++;
+        ResetPlayerLocations();
+        DisableOrEnablePlayers();
+        resetTheTimer();
     }
 
     void resetTheTimer()
@@ -145,8 +157,36 @@ public class SceneManager : MonoBehaviour
     void UpdateTimerCounter()
     {
         int secs = Convert.ToInt32(RemainingTime);
-        timercounter.SetText("Time:" + secs );
+        timercounter.SetText("Time:" + secs);
     }
-    void StartNextTurn() { }
-    void BeginFailPhase() { }
+
+    void UpdateHealthCounter()
+    {
+        List<int> currentplayerhealth = new List<int>();
+        List<int> totalplayerHealth = new List<int>();
+        for (int i = 0; i < playerRefs.Length; ++i)
+        {
+            currentplayerhealth.Add(playerRefs[i].GetComponent<PlayerMovement>().currentHealth);
+            totalplayerHealth.Add(playerRefs[i].GetComponent<PlayerMovement>().maxHealth);
+        }
+        currentplayerhealth.ToArray();
+        for (int i = 0; i < healthcounter.Length; ++i)
+        {
+            healthcounter[i].SetText(currentplayerhealth[i].ToString() + " / " + totalplayerHealth[i].ToString());
+        }
+    }
+
+    void UpdatePlayerName()
+    {
+        List<string> playernames = new List<string>();
+        for (int i = 0; i < playerRefs.Length; ++i)
+        {
+            playernames.Add(playerRefs[i].GetComponent<PlayerMovement>().name);
+        }
+        playernames.ToArray();
+        for (int i = 0; i < namedisplay.Length; ++i)
+        {
+            namedisplay[i].SetText(playernames[i]);
+        }
+    }
 }
