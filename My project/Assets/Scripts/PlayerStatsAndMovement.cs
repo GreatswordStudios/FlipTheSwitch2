@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 4;
     public bool isActivePlayer = false;
     public int currentHealth = 4;
+    public string name = "";
 
     // Start is called before the first frame update
     void Start()
