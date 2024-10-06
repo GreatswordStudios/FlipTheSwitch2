@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPromptText: {fileID: 0}
-  yesButton: {fileID: 1789806172}
-  noButton: {fileID: 0}
+  yesButton: {fileID: 152914926}
+  noButton: {fileID: 1789806172}
   numclicks: 0
   makevisible: []
 --- !u!1 &243476006

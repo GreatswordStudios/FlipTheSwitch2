@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
@@ -22,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
-        BoxCollider2D box = GetComponent<BoxCollider2D>();
-        Debug.Log(box);
+        rb.mass = 0f;
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
+        
         if (!isActivePlayer)
         {
 
@@ -68,6 +70,20 @@ public class PlayerMovement : MonoBehaviour
                 transform.Translate(movement * speed * Time.deltaTime);
             }
         }
+    }
+    public void TakeDamage(){
+        currentHealth --;
+        if (currentHealth <=0){
+            KillPlayer();
+        }
+    }
+
+    public void KillPlayer(){
+
+    }
+
+    public void AllDamage(){
+        
     }
             
 }
