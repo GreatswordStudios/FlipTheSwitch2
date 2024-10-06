@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
+        
         if (!isActivePlayer)
         {
 
@@ -70,6 +72,20 @@ public class PlayerMovement : MonoBehaviour
                 transform.Translate(movement * speed * Time.deltaTime);
             }
         }
+    }
+    public void TakeDamage(){
+        currentHealth --;
+        if (currentHealth <=0){
+            KillPlayer();
+        }
+    }
+
+    void KillPlayer(){
+
+    }
+
+    public void AllDamage(){
+        
     }
             
 }
