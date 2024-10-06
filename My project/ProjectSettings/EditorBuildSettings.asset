@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Player Sign In.unity
+    guid: 294cbf7a15478a84cb270b7a9f788258
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom.unity
+    guid: c9e051bb384f79743ac03c4f1d23dd8b
+  - enabled: 1
+    path: Assets/Scenes/Selection.unity
+    guid: 0b13a9e54c2144d8e8cfb3525e9625a4
+  - enabled: 1
+    path: Assets/Scenes/FlipTheSwitchMain.unity
+    guid: 1bd7561a7dc75e04c828a75163e6883d
+  - enabled: 1
+    path: Assets/Scenes/Player Win.unity
+    guid: 897340d5b1acc214b876ba2c6eda3875
   m_configObjects: {}
